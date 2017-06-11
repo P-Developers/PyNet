@@ -1,4 +1,6 @@
 import socket
+import time
+from datetime import datetime
 
 class TCP(object):
 
@@ -12,16 +14,16 @@ class TCP(object):
 
         tcp_server.bind(serverinfo)
 
-        tcp_server.listen(5)
+        tcp_server.listen(10)
 
 
         tcp_client , acceptor = tcp_server.accept()
-
+        
         dt = tcp_client.recv(5000)
 
         tmp = dt
 
-        tcp_client.sendall(SendData)
+        tcp_client.sendall(SendData.encode("utf-8"))
 
         return tmp
 
@@ -39,9 +41,3 @@ class TCP(object):
         dt = tcp_client.recv(5000)
 
         return dt
-
-
-
-
-if __name__ == "__main__":
-    print(TCP.Client("127.0.0.1",9999,"HELLO"))
